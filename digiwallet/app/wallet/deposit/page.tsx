@@ -5,12 +5,13 @@ import convertToSubcurrency from "@/lib/convertToSubcurrency";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
 }
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-export default function PaymentPage() {
+function PaymentPage() {
   const searchParams = useSearchParams();
   const amount = searchParams.get("amount");
   console.log("Amount from params:", amount);
@@ -36,5 +37,13 @@ export default function PaymentPage() {
         <CheckoutPage amount={Number(amount)} />
       </Elements>
     </main>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <PaymentPage />
+    </Suspense>
   );
 }

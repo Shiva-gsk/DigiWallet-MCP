@@ -30,7 +30,10 @@ const ActivityLogModal: React.FC<ActivityLogModalProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useUser();
 
-  const fetchActivityLogs = async () => {
+
+
+  useEffect(() => {
+    const fetchActivityLogs = async () => {
     if (user) {
       setIsLoading(true);
       const logs = await getUserActivityLogs(user.emailAddresses[0].emailAddress);
@@ -40,8 +43,6 @@ const ActivityLogModal: React.FC<ActivityLogModalProps> = ({ children }) => {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
     fetchActivityLogs();
   }, [user]);
 
