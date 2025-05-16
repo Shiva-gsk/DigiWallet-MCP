@@ -47,7 +47,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `${process.env.DEPLOYMENT_URL}/payment-success?amount=${amount}`,
+        return_url: `${process.env.NEXT_PUBLIC_DEPLOYMENT_URL}/payment-success?amount=${amount}`,
       },
     });
 
@@ -79,7 +79,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
     );
   }
   
-      console.log("Client Secret:", clientSecret);
+      // console.log("Client Secret:", clientSecret);
   return (<>
   
     <form onSubmit={handleSubmit} className="bg-white p-2 rounded-md">

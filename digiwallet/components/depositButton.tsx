@@ -12,6 +12,7 @@ import { Input } from "./ui/input";
 import { FormEvent, useState, useTransition } from "react";
 import { useUser } from "@clerk/nextjs";
 import { depositMoney } from "@/app/actions/depositMoney";
+import { useRouter } from "next/navigation";  
 
 interface Props {
   children: React.ReactNode;
@@ -20,6 +21,7 @@ interface Props {
 }
 
 export function DepositButton({ children, setFlag, flag }: Props) {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [amount, setAmount] = useState("");
   const [success, setSuccess] = useState("");
@@ -43,6 +45,7 @@ export function DepositButton({ children, setFlag, flag }: Props) {
           }
         }
       );
+      router.push("/wallet/deposit/?amount=" + amount);
     });
   }
 
