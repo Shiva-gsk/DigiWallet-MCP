@@ -46,7 +46,7 @@ export const sendMoneyById = async (
         where: { id: receiver.id },
         data: { balance: { increment: amount } },
       });
-      
+
       await db.transaction.create({
         data: {
           status: "completed",
@@ -57,7 +57,6 @@ export const sendMoneyById = async (
         },
       });
     });
-
 
     await db.notification.create({
       data: {
