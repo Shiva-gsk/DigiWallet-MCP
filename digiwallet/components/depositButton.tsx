@@ -11,16 +11,16 @@ import {
 import { Input } from "./ui/input";
 import { FormEvent, useState, useTransition } from "react";
 import { useUser } from "@clerk/nextjs";
-import { depositMoney } from "@/app/actions/depositMoney";
+// import { depositMoney } from "@/app/actions/depositMoney";
 import { useRouter } from "next/navigation";  
 
 interface Props {
   children: React.ReactNode;
-  flag: boolean;
-  setFlag: (flag: boolean) => void;
+  // flag: boolean;
+  // setFlag: (flag: boolean) => void;
 }
 
-export function DepositButton({ children, setFlag, flag }: Props) {
+export function DepositButton({ children }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [amount, setAmount] = useState("");
@@ -32,19 +32,19 @@ export function DepositButton({ children, setFlag, flag }: Props) {
     e.preventDefault();
     if (!user) return;
     startTransition(() => {
-      depositMoney(user.emailAddresses[0]?.emailAddress, Number(amount)).then(
-        (data) => {
-          console.log(data);
-          if (data) {
-            setSuccess("Money Deposited Successfully");
-            setStep("success");
-            setFlag(!flag);
-          } else {
-            setError("Money Deposited Successfully");
-            setStep("error");
-          }
-        }
-      );
+      // depositMoney(user.emailAddresses[0]?.emailAddress, Number(amount)).then(
+      //   (data) => {
+      //     console.log(data);
+      //     if (data) {
+      //       setSuccess("Money Deposited Successfully");
+      //       setStep("success");
+      //       setFlag(!flag);
+      //     }// else {
+      //     //   setError("Money Deposited Successfully");
+      //     //   setStep("error");
+      //     // }
+      //   }
+      // );
       router.push("/wallet/deposit/?amount=" + amount);
     });
   }

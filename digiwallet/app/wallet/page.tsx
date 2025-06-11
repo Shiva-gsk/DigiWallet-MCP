@@ -152,7 +152,7 @@ export default function WalletPage() {
       <div className="w-full justify-around flex pb-4">
         {/* <Button className="h-10 w-[35%] cursor-pointer" >Deposit</Button>
           <Button className="h-10 w-[35%] cursor-pointer" >Withdraw</Button> */}
-        <DepositButton setFlag={setFlag} flag={flag}>Deposit</DepositButton>
+        <DepositButton>Deposit</DepositButton>
         <WithdrawButton setFlag={setFlag} flag={flag}>Withdraw</WithdrawButton>
       </div>
       <PhoneNumberForm />

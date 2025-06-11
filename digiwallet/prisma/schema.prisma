@@ -41,6 +41,8 @@ model User {
   updatedAt            DateTime      @updatedAt
   sentTransactions     Transaction[] @relation("SenderRelation")
   receivedTransactions Transaction[] @relation("ReceiverRelation")
+  resetToken           String?      
+  resetTokenExpiry     DateTime? 
   wallet_id            String?       @unique
   user_wallet          Wallet?       @relation(fields: [wallet_id], references: [id])
 

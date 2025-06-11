@@ -1,5 +1,6 @@
 "use server"
 
+// import { redirect } from "next/navigation";
 import { db } from "../../lib/db";
 import { fetchUserbyEmail } from "./getUser";
 import { fetchWalletbyUserEmail } from "./getWallet"
@@ -33,6 +34,7 @@ export const depositMoney = async (email: string, amount:number) =>{
                     details: `Deposited ${amount} Rs.`
                 }
             })
+            // redirect("/wallet/");
             return true;
         }
         catch{

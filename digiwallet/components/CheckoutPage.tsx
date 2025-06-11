@@ -47,7 +47,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `${process.env.NEXT_PUBLIC_DEPLOYMENT_URL}/payment-success?amount=${amount}`,
+        return_url: `${process.env.NEXT_PUBLIC_DEPLOYMENT_URL}/payment-success/${amount}`,
       },
     });
 
