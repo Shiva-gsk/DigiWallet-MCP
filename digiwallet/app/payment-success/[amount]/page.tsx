@@ -6,11 +6,9 @@ import Redirect from '@/components/payment/Redirect';
 // import { Metadata } from 'next';
 import { currentUser } from "@clerk/nextjs/server";
 // import { redirect } from 'next/navigation';
-type Props = {
-  params: {
-    amount: string;
-  };
-};
+interface Props {
+  params: Promise<{ amount: string }>
+}
 
 export default async function Page({ params }: Props) {
   const user = await currentUser(); // Gets the ID of the signed-in user
