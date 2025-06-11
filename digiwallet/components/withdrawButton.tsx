@@ -32,7 +32,7 @@ export function WithdrawButton({ children, setFlag, flag }: Props) {
     startTransition(() => {
       withdrawMoney(user.emailAddresses[0]?.emailAddress, Number(amount)).then(
         (data) => {
-          console.log(data);
+          // console.log(data);
           if (data.success) {
             setSuccess(data.message);
             setStep("success");
