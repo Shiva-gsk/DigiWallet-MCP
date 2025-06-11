@@ -71,7 +71,7 @@ export function CreateRequestModal({ onClose }: CreateRequestModalProps) {
           return
         }
         storeMoneyRequest(user.id, (selectedUser)?selectedUser.id:"", Number(amount), reason).then((data) => {
-          console.log(data);
+          // console.log(data);
           if(data){
             setStep("success")
             console.log("success");

@@ -62,7 +62,7 @@ export function CardManagement({ userId }: CardManagementProps) {
   const handleFreezeCard = (cardId: string) => {
     setSelectedCardId(cardId);
     setFreezeDialogOpen(true);
-    console.log(userId);
+    // console.log(userId);
   };
 
   const confirmFreezeCard = () => {

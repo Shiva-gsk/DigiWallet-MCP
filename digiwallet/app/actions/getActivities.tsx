@@ -9,7 +9,7 @@ export const fetchActivities = async (id: string) =>{
             userId: id
         }
     });
-    console.log(activities);
+    // console.log(activities);
     return activities;
     }
     catch(e){

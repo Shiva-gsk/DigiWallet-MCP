@@ -11,7 +11,7 @@ export const fetchActivities = async (id: string) => {
         ORDER BY "timestamp" DESC;
         `;
 
-        console.log(activities);
+        // console.log(activities);
         return activities;
 
     } catch (e) {

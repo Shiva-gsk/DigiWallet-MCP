@@ -2,7 +2,7 @@
 import { db } from "@/lib/db";
 
 export const storeMoneyRequest = async (senderId: string, receiverId: string, amount: number, desc: string) => {
-    console.log(senderId, receiverId, amount, desc);
+    // console.log(senderId, receiverId, amount, desc);
 
     try {
         await db.$queryRaw`

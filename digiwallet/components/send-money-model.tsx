@@ -89,7 +89,7 @@ export function SendMoneyModal({ user, onClose }: SendMoneyModalProps) {
       return
     }
     sendMoneyById(clerkUser.id, receiver, money, reason).then((data) => {
-      console.log(data);
+      // console.log(data);
       if(data){
         setStep("success")
       }
