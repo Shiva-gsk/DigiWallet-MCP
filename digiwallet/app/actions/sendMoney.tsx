@@ -56,7 +56,10 @@ export const sendMoneyById = async (
           desc,
         },
       });
-    });
+    },{
+  maxWait: 10000,      // how long to wait for acquiring connection (ms)
+  timeout: 15000       // how long the transaction is allowed to run (ms)
+});
 
     await db.notification.create({
       data: {
@@ -89,10 +92,10 @@ export const sendMoneyById = async (
         return false;
       }
       const { data, error } = await resend.emails.send({
-        from: "DigiWallet <noreply@resend.dev>",
-        //   to: [receiveUser?.email],
-        to: "shivakumargulapala2005@gmail.com",
-        subject: "Hello world",
+        from: "DigiWallet <noreply@shivagulapala.me>",
+          to: [receiveUser?.email],
+        // to: "shivakumargulapala2005@gmail.com",
+        subject: "Credit",
         react: await EmailTemplate({
           sender: sendUser?.username,
           receiver: receiveUser?.username,
