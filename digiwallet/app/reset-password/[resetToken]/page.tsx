@@ -9,9 +9,12 @@ const ResetPassword =async ({ params }: Props) => {
   const {resetToken} = await params;
 
   return (
+    <div className='container mx-auto flex h-screen items-center justify-center'>
+
     <Suspense fallback={<div>Loading...</div>}>
         <ResetInput resetToken={resetToken} />
     </Suspense>
+    </div>
   )
 }
 

@@ -13,20 +13,25 @@ import { useUser } from "@clerk/nextjs";
 
 import { PinInput } from "./pin-input";
 import { changePassword } from "@/app/actions/changePassword";
+import { useRouter } from "next/navigation";
+
 
 interface Props {
   children: React.ReactNode;
-  flag: boolean;
-  setFlag: (flag: boolean) => void;
+  // flag: boolean;
+  // setFlag: (flag: boolean) => void;
+
 }
 
-export function SetPassword({ children, setFlag, flag }: Props) {
+export function SetPassword({children }: Props) {
   const [, startTransition] = useTransition();
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const [step, setStep] = useState("pin");
   const { user } = useUser();
+  const router = useRouter();
   function handlePassword(pin:string): void {
+
     if (!user) {
       setError("Something went wrong! Try Later");
       setStep("error");
@@ -37,7 +42,7 @@ export function SetPassword({ children, setFlag, flag }: Props) {
         if (data.success) {
           setSuccess(data.message);
           setStep("success");
-          setFlag(!flag)
+          // setFlag(!flag)
         } else {
           
           setError(data.message);
@@ -45,12 +50,17 @@ export function SetPassword({ children, setFlag, flag }: Props) {
         }
       });
     });
+
+    setTimeout(()=>{
+      // setStep("pin");
+      router.push("/wallet");
+    }, 3000);
   }
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="h-10 w-[35%] cursor-pointer">{children}</Button>
+        <Button className="h-[10%] w-[30%] cursor-pointer">{children}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

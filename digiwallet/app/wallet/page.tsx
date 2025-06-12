@@ -15,7 +15,7 @@ import { fetchUserbyId } from "@/app/actions/getUser";
 import { DepositButton } from "@/components/depositButton";
 import { WithdrawButton } from "@/components/withdrawButton";
 import LoadingWidget from "@/components/LoadingWidget";
-import { SetPassword } from "@/components/setPassword";
+// import { SetPassword } from "@/components/setPassword";
 // import { updatePhoneNumber } from "../actions/verifyPhoneNum";
 import PhoneNumberForm from "@/components/phoneNumberForm";
 export default function WalletPage() {
@@ -94,6 +94,44 @@ export default function WalletPage() {
     });
   }, [isLoaded, user, balance, flag]);
 
+  const handleSetPassword = async () =>{
+    if (!currentUser) {
+      toast.error("Something went wrong! Try Later", {
+        style: { color: "red" },
+      });
+      return;
+    }
+
+    try{
+      const response = await fetch("/api/reset-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: currentUser.id }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to set password");
+      }
+
+      toast.success("Password Request successfully!", {
+        style: { color: "green" },
+      });
+      // setFlag(!flag);
+
+    } catch {
+      toast.error("Something went wrong! Try Later", {
+        style: { color: "red" },
+      });
+    }
+
+    toast.success("Check your mail for instructions.", {
+        style: { color: "green" },
+        description: "Link sent successfully.",
+      });
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6 flex items-center">
@@ -105,7 +143,8 @@ export default function WalletPage() {
         <div className="flex justify-between w-full">
           <h1 className="text-2xl font-bold">My Wallet</h1>
 
-          <SetPassword setFlag={setFlag} flag={flag}>Set Password</SetPassword>
+          {/* <SetPassword setFlag={setFlag} flag={flag}>Set Password</SetPassword> */}
+          <Button onClick={handleSetPassword}>Set Password</Button>
         </div>
       </div>
 
