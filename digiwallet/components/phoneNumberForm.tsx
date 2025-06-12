@@ -62,7 +62,7 @@ export default function PhoneNumberForm() {
   }
   
   return (
-    <div className="flex justify-center min-w-screen bg-gray-100 p-6">
+    <div className="flex justify-center min-w-[90vw] bg-gray-100 p-6">
       <form 
         onSubmit={handleFormSubmit(onSubmit)} 
         className="bg-white p-6 rounded-lg shadow-lg w-96 space-y-6"
