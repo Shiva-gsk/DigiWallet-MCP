@@ -13,7 +13,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
     <h1>Password Reset Request</h1>
     <p>Hi {sender},</p>
     <p>Click the link below to reset your password:</p>
-    <a href={`https://${process.env.NEXT_PUBLIC_DEPLOYMENT_URL}/reset-password/${resetToken}`}>
+    <a href={`${process.env.NEXT_PUBLIC_DEPLOYMENT_URL}/reset-password/${resetToken}`}>
       Reset Password
     </a>
   </div>
