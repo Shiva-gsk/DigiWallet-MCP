@@ -75,11 +75,14 @@ The **Digital Wallet Management System (DWMS)** is a modern web application that
 ### Local Setup
 
 1. Install **Node.js** from [nodejs.org](https://nodejs.org)
-2. Unzip the project folder `dbms_cs03_09.zip`
+2. Clone the repo
+    ```
+    git clone https://github.com/Shiva-gsk/DigiWallet-MCP.git
+    ```
 3. Navigate to the code folder:
 
    ```bash
-   cd path/to/dbms_cs03_09
+   cd DigiWallet-MCP/digiwallet 
    ```
 
 4. Install dependencies:
@@ -87,15 +90,115 @@ The **Digital Wallet Management System (DWMS)** is a modern web application that
    ```
    npm install
    ```
-5. Run the development server:
+5. You need to add following Environment variables to `.env.local` file 
+    ```
+    <!-- For clerk Authentication -->
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=    
+    CLERK_SECRET_KEY=
+    SIGNING_SECRET=
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/signIn
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/signUp
+
+    <!-- For Resend Email Service -->
+    RESEND_API_KEY=
+
+    <!-- For Stripe Payments -->
+    NEXT_PUBLIC_STRIPE_PUBLIC_KEY=
+    STRIPE_SECRET_KEY=
+    NEXT_PUBLIC_DEPLOYMENT_URL=http://localhost:3000
+
+    <!-- To connet with PostgreSQL Service -->
+    DATABASE_URL=
+    ```
+
+6. Run the development server:
 
    ```
    npm run dev
    ```
-6. Open your browser at `http://localhost:3000`
+7. Open your browser at `http://localhost:3000`
 
----
+### Overall Director Structure
 
+
+```
+digiwallet/
+    ├── app/
+        ├── actions/
+        ├── admin/
+            ├── users/
+                ├── [id]/
+                    └── page.tsx
+                └── page.tsx
+            └── page.tsx
+        ├── api/
+            ├── create-payment-intent/
+                └── route.ts
+            ├── reset-password/
+                └── route.ts
+            └── webhooks/
+                └── clerk/
+                    └── route.ts
+        ├── money-request/
+            └── page.tsx
+        ├── payment-success/
+            └── [amount]/
+                └── page.tsx
+        ├── reset-password/
+            └── [resetToken]/
+                └── page.tsx
+        ├── send-money/
+            ├── loading.tsx
+            └── page.tsx
+        ├── signIn/
+            └── [[...signIn]]/
+                └── page.tsx
+        ├── signUp/
+            └── [[...signUp]]/
+                └── page.tsx
+        ├── wallet/
+            ├── deposit/
+                └── page.tsx
+            └── page.tsx
+        ├── favicon.ico
+        ├── globals.css
+        ├── layout.tsx
+        └── page.tsx
+    ├── components/
+    ├── lib/
+        ├── convertToSubcurrency.ts
+        ├── db.ts
+        └── utils.ts
+    ├── models/
+        ├── sqlQueries/
+            ├── admin.ts
+            ├── request.ts
+            ├── transactions.ts
+            ├── user.ts
+            └── wallet.ts
+        └── createTables.ts
+    ├── prisma/
+        └── schema.prisma
+    ├── public/
+    ├── utils/
+    ├── .gitignore
+    ├── components.json
+    ├── eslint.config.mjs
+    ├── middleware.ts
+    ├── next.config.ts
+    ├── package-lock.json
+    ├── package.json
+    ├── postcss.config.mjs
+    ├── README.md
+    ├── tsconfig.json
+    └── types.d.ts
+mcp/
+    ├── app.py
+    ├── data.json
+    ├── requirements.txt
+README.md
+User Manual.docx
+```
 ## 🧭 Dashboard Overview
 
 ### Home Page
@@ -153,7 +256,7 @@ The **Digital Wallet Management System (DWMS)** is a modern web application that
 ## 🔗 Integration
 
 * **Authentication**: Clerk (OAuth, Email, MFA)
-* **Email**: Resend used to notify admin on each transaction
+* **Email**: Resend used to notify Users on each transaction
 * **Database**: Neon (PostgreSQL cloud storage)
 
 ---
@@ -186,5 +289,4 @@ The **Digital Wallet Management System (DWMS)** is a modern web application that
 ### Site Not Loading
 
 * Update browser, clear cache, check connection
-
 
