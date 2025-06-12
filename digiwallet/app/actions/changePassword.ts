@@ -2,8 +2,15 @@
 
 import { db } from "../../lib/db"
 
-export const changePassword = async (email: string, password: number) => {
+export const changePassword = async (email: string, password: number, resetToken:string) => {
     try{
+        const user = await db.user.findUnique({
+            where: {
+                email,
+                resetToken
+            }
+        })
+        if(!user) return {success: false, message: "User not found"};
         await db.user.update({
             where: {
                 email

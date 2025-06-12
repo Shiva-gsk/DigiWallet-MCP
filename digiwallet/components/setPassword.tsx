@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -18,12 +19,13 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   children: React.ReactNode;
+  resetToken?: string;
   // flag: boolean;
   // setFlag: (flag: boolean) => void;
 
 }
 
-export function SetPassword({children }: Props) {
+export function SetPassword({children, resetToken }: Props) {
   const [, startTransition] = useTransition();
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -38,7 +40,7 @@ export function SetPassword({children }: Props) {
       return;
     };
     startTransition(() => {
-      changePassword(user.emailAddresses[0].emailAddress ,Number(pin)).then((data) => {
+      changePassword(user.emailAddresses[0].emailAddress ,Number(pin), resetToken || "").then((data) => {
         if (data.success) {
           setSuccess(data.message);
           setStep("success");
