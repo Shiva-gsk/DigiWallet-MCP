@@ -18,16 +18,17 @@ export async function POST(req:Request) {
     const userExists = await db.user.findUnique({
       where: { id: userId },
     });
-
+    console.log(userExists);
     if (!userExists) {
       return new Response('Error: User not found', {
         status: 404,
       });
     }
-    db.user.update({
+    const up = await db.user.update({
       where: { id: userId },
       data: { resetToken: randomString }, 
     });
+    console.log(up);
   }
   catch{
     return new Response('Error: Database query failed', {

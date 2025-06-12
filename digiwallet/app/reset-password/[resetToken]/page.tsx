@@ -7,7 +7,7 @@ interface Props {
 
 const ResetPassword =async ({ params }: Props) => {
   const {resetToken} = await params;
-
+  console.log("Reset Token:", resetToken);
   return (
     <div className='container mx-auto flex h-screen items-center justify-center'>
 
@@ -18,4 +18,4 @@ const ResetPassword =async ({ params }: Props) => {
   )
 }
 
-export default ResetPassword
+export default ResetPassword;
