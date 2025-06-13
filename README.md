@@ -120,7 +120,6 @@ The **Digital Wallet Management System (DWMS)** is a modern web application that
 
 ### Overall Director Structure
 
-
 ```
 digiwallet/
     ├── app/
