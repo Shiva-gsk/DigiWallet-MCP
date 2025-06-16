@@ -116,6 +116,7 @@ export const sendMoneyById = async (
     }
 
     return true;
+    
   } catch (e) {
     await db.transaction.create({
       data: {

@@ -107,7 +107,7 @@ The **Digital Wallet Management System (DWMS)** is a modern web application that
     STRIPE_SECRET_KEY=
     NEXT_PUBLIC_DEPLOYMENT_URL=http://localhost:3000
 
-    <!-- To connet with PostgreSQL Service -->
+    <!-- To connect with PostgreSQL Service -->
     DATABASE_URL=
     ```
 

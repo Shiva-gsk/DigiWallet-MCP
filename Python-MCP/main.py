@@ -1,10 +1,10 @@
 import asyncio
 import json
 import logging
-import os
 from typing import Any, Dict, List, Optional, Sequence
 from datetime import datetime
 import asyncpg
+import os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
@@ -19,6 +19,9 @@ from mcp.types import (
     LoggingLevel
 )
 import mcp.types as types
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -486,7 +489,7 @@ async def mcp_list_tools():
 
 if __name__ == "__main__":
     uvicorn.run(
-        "app:app",
+        "main:app",
         host="0.0.0.0",
         port=8000,
         reload=True,
