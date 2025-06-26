@@ -238,6 +238,8 @@ User Manual.docx
 
 * View balance (hidden by default → PIN required to reveal)
 * Update phone number via secured form
+* Request to change Wallet password (A link will be sent to the user email for resetting Password)
+* NOTE: User can change password using the link, only if he's logged into DigiWallet.
 
 ---
 
