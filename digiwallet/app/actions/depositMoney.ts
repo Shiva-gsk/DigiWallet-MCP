@@ -2,12 +2,61 @@
 
 // import { redirect } from "next/navigation";
 import { db } from "../../lib/db";
-import { fetchUserbyEmail } from "./getUser";
-import { fetchWalletbyUserEmail } from "./getWallet"
+import { fetchUserbyEmail, fetchUserbyId } from "./getUser";
+import { fetchWalletbyUser, fetchWalletbyUserEmail } from "./getWallet"
+
+export const depositMoneyById = async (id: string, amount:number) =>{
+    const sendUser = await fetchUserbyId(id);
+    const sender = await fetchWalletbyUser(id);
+    // console.log("Sender:", sender);
+
+    if(!sender || !sendUser){
+        return false;
+    }
+
+      try{
+            await db.wallet.update({
+                where: {id:sender.id},
+                data: {balance: {increment: amount}}
+            })
+
+            await db.deposit.create({
+                data: {
+                    amount: amount,
+                    walletId: sender.id,
+                    status: "success",
+
+                }
+            })
+            await db.activityLog.create({
+                data:{
+                    userId: sendUser?.id,
+                    activity_type: "Deposit",
+                    details: `Deposited ${amount} Rs.`
+                }
+            })
+            // redirect("/wallet/");
+            return true;
+        }
+        catch{
+            await db.deposit.create({
+                data: {
+                    amount: amount,
+                    walletId: sender.id,
+                    status: "Failed",
+    
+                }
+            })
+
+            return false;
+        }
+}
+
 
 export const depositMoney = async (email: string, amount:number) =>{
     const sendUser = await fetchUserbyEmail(email);
     const sender = await fetchWalletbyUserEmail(email);
+    // console.log("Sender:", sender);
 
     if(!sender || !sendUser){
         return false;

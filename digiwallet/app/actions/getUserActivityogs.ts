@@ -23,7 +23,7 @@ export async function getUserActivityLogs(email: string): Promise<ActivityLog[] 
         timestamp: "desc",
       },
     });
-    console.log(activityLogs)
+    // console.log(activityLogs)
     return activityLogs as ActivityLog[];
   } catch (error) {
     console.error("Error fetching activity logs:", error);

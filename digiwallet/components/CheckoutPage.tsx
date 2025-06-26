@@ -49,6 +49,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       confirmParams: {
         return_url: `${process.env.NEXT_PUBLIC_DEPLOYMENT_URL}/payment-success/${amount}`,
       },
+      
     });
 
     if (error) {
