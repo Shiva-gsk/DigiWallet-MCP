@@ -15,7 +15,7 @@ import Header from "@/components/Navbar";
 import { useEffect, useState, useTransition } from "react";
 import { getTransactions } from "@/app/actions/getTransactions";
 import { Transactions } from "@/types";
-import { syncUsers } from "./actions/syncUsers";
+// import { syncUsers } from "./actions/syncUsers";
 import { useRouter } from "next/navigation";
 import ActivityLogModal from "@/components/userActivityLog";
 
@@ -31,7 +31,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       if (isSignedIn) {
-        await syncUsers(); // Call only when user is signed in
+        // await syncUsers(); // Call only when user is signed in
       }
     };
     fetchData();

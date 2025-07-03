@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+// import { Menu, X } from "lucide-react";
 import { UserButton, useUser } from "@clerk/nextjs";
 
 export default function Header() {
@@ -30,7 +30,7 @@ export default function Header() {
     }
   }, [])
   
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen,] = useState(false);
   return (
     <header className="py-4 pb-0 md:pb-4 px-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-500 w-full border-b border-border/40 ">
       <div className="container mx-auto flex justify-between items-center">
@@ -86,13 +86,13 @@ export default function Header() {
         
 
         {/* Hamburger Icon (Mobile) */}
-        <button 
+        {/* <button 
           ref={navRef}
           className="md:hidden text-primary focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        </button> */}
       </div>
 
       {/* Mobile Menu */}
@@ -103,7 +103,7 @@ export default function Header() {
         className={`overflow md:hidden flex flex-col items-center space-y-4 bg-background px-6 py-4 z-100`}
       >
         <div className="flex flex-col items-center space-y-4" ref={headerRef}>
-        <Link href="#features" className="text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>
+        {/* <Link href="#features" className="text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>
           Features
         </Link>
         <Link href="#how-it-works" className="text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>
@@ -111,7 +111,7 @@ export default function Header() {
         </Link>
         <Link href="#pricing" className="text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>
           Pricing
-        </Link>
+        </Link> */}
         {/* Auth Buttons (Mobile) */}
         {/* {user?<>
           <Link href="/dashboard" className="w-full">
